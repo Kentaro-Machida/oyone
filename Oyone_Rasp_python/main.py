@@ -52,6 +52,8 @@ def run_with_image():
             else:
                 stop = False
             which = direction.direction(guide_line, center_line, stop)
+            rtn_which = to_arduino.serial_read()
+            print(rtn_which)
             to_arduino.serial_wirte(which)
 
             edge_img = guide_line_getter.get_edges_frame()
