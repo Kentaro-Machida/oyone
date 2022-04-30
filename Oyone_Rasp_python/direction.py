@@ -3,7 +3,7 @@ Determine the control of motors.
 """
 def direction(guide_line:int, center_line:int, stop=False) -> str:
     if (stop==True):
-        return "stop"
+        return "s"
 
     right_thresh = -20
     left_thresh = 20
@@ -11,10 +11,10 @@ def direction(guide_line:int, center_line:int, stop=False) -> str:
     difference = center_line - guide_line
 
     if (difference > left_thresh):
-        return "left"
+        return "l"
 
     elif(difference < right_thresh):
-        return "right"
+        return "r"
         
     else:
-        return "straight"
+        return "f"
