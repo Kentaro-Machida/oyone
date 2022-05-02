@@ -87,6 +87,7 @@ def manual_run():
             print('Camera is not detected.')
             break
         else:
+            guide_line = guide_line_getter.get_guide_line()
             edge_img = guide_line_getter.get_edges_frame()
             final = guide_line_getter.get_final_frame()
 
@@ -105,7 +106,7 @@ def manual_run():
             if key == 27:
                 break
 
-def main()->None:
+def main():
     args = sys.argv
     if len(args)<1:
         print('Please select a mode.\n \"auto\" or \"manual\" or \"auto_with_image\".')
