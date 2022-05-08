@@ -50,7 +50,7 @@ void Stop()
   
 }
 
-void Right() 
+void Left() 
 {
  digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
@@ -63,7 +63,7 @@ void Right()
   
 }
 
-void Left() 
+void Right() 
 {
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
