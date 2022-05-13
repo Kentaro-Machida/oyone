@@ -1,28 +1,29 @@
 """
 Code for manual operation.
 """
-
-# arrows key value of opencv waitkey (MacOS)
-#up=0
-#down=1
-#left=2
-#right=3
-
-# arrows key value of opencv waitkey (external keyboard)
-up=82
-down=84
-left=81
-right=83
+class ManualDirector():
+    def __init__(self, os:str)->None:
+        # arrows key value of opencv waitkey (MacOS)
+        if (os=='mac'):
+            self.up=0
+            self.down=1
+            self.left=2
+            self.right=3
+        elif (os=='linux'):
+            self.up=82
+            self.down=84
+            self.left=81
+            self.right=83
 
 # Convert from arrow keys to characters required by arduino
-def manual_direction(key:int) -> str:
-    if(key==up):
-        return 'f'
-    elif(key==down):
-        return 's'
-    elif(key==right):
-        return 'r'
-    elif(key==left):
-        return 'l'
-    else:
-        return '-'
+    def get_direction(self,key:int) -> str:
+        if(key==self.up):
+            return 'f'
+        elif(key==self.down):
+            return 's'
+        elif(key==self.right):
+            return 'r'
+        elif(key==self.left):
+            return 'l'
+        else:
+            return '-'
