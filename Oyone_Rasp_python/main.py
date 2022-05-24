@@ -83,7 +83,8 @@ def autorun_with_image():
             if key == 27:
                 break
         
-def manual_run(save_video=False, save_sensor=False, os='mac',
+def manual_run(save_video=False, save_sensor=False,
+               display_video=False ,os='mac',
                output_video_dir='./data/video', output_sensor_dir='./data/sensor'):
     to_arduino = serial_communication.communicator()
     manual_director = manual.ManualDirector(os)
@@ -96,24 +97,25 @@ def manual_run(save_video=False, save_sensor=False, os='mac',
             print('Camera is not detected.')
             break
         else:
-            guide_line = guide_line_getter.get_guide_line()
-            input_img = guide_line_getter.get_input_frame()
-            edge_img = guide_line_getter.get_edges_frame()
-            final = guide_line_getter.get_final_frame()
+            if display_video:
+                guide_line = guide_line_getter.get_guide_line()
+                input_img = guide_line_getter.get_input_frame()
+                edge_img = guide_line_getter.get_edges_frame()
+                final = guide_line_getter.get_final_frame()
 
+                cv2.imshow('edge image', edge_img)
+                cv2.imshow('final image',final)
+            
             cv2.imshow('input image',frame)
-            cv2.imshow('edge image', edge_img)
-            cv2.imshow('final image',final)
-
             key = cv2.waitKey(1)
             sensor_dict = None # 後でセンサー値をaruduinoから取得する関数を作成する
             which = manual_director.get_direction(key)
+            if save_video:
+                data_saver.save(frame, sensor_dict, which)
             print(which)
             to_arduino.serial_wirte(which)
 
             rtn_which = to_arduino.serial_read()
-            if save_video:
-                data_saver.save(input_img, sensor_dict, which)
             
             # key27: esc
             if key == 27:
@@ -125,7 +127,7 @@ def main():
                         help="select mode. 'auto' or 'manual'.",
                         type=str, choices=['auto', 'manual'])
     parser.add_argument("--display_video", "-d",
-                        help="Display videos.",
+                        help="Display videos. On the manual mode, decides whether shows edeg img.",
                         action='store_true')
     parser.add_argument("--save_video","-s",
                         help="Save videos.",
@@ -155,7 +157,8 @@ def main():
     
     if(args.mode=='manual'):
         print('manual mode start.')
-        manual_run(args.save_video, args.save_sensor, args.os,
+        manual_run(args.save_video, args.save_sensor,
+            args.display_video ,args.os,
             args.video_output_dir, args.sensor_output_dir)
     elif(args.mode=='auto' & args.desplay_video==True):
         print('auto mode(output image) start.\n')
