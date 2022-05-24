@@ -20,10 +20,10 @@ class ManualDirector():
         if(key==self.up):
             return 'f'
         elif(key==self.down):
-            return 's'
+            return 'b'
         elif(key==self.right):
             return 'r'
         elif(key==self.left):
             return 'l'
         else:
-            return '-'
+            return 's'
