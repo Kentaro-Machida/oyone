@@ -108,12 +108,12 @@ def manual_run(save_video=False, save_sensor=False, os='mac',
             key = cv2.waitKey(1)
             sensor_dict = None # 後でセンサー値をaruduinoから取得する関数を作成する
             which = manual_director.get_direction(key)
+            print(which)
             to_arduino.serial_wirte(which)
 
             rtn_which = to_arduino.serial_read()
             if save_video:
                 data_saver.save(input_img, sensor_dict, which)
-            print(rtn_which)
             
             # key27: esc
             if key == 27:
@@ -145,27 +145,26 @@ def main():
     args = parser.parse_args()
     # default args
     if args.video_output_dir == None:
-        args.video_output_dir = '.data/video'
+        args.video_output_dir = './data/video'
     if args.sensor_output_dir == None:
-        args.sensor_output_dir = '.data/sensor'
+        args.sensor_output_dir = './data/sensor'
     if args.os == None:
         args.os = 'mac'
     
 
-    try:
-        if(args.mode=='manual'):
-            print('manual mode start.')
-            manual_run(args.save_video, args.save_sensor, args.os,
-                args.video_output_dir, args.sensor_output_dir)
-        elif(args.mode=='auto' & args.desplay_video==True):
-            print('auto mode(output image) start.\n')
-            autorun_with_image()
-        elif(args.mode=='auto' & args.desplay_video==None):
-            print('auto mode start.\n')
-            autorun()
-        else:
-            print(args.mode,"mode is not exit.")
-    except:
+    
+    if(args.mode=='manual'):
+        print('manual mode start.')
+        manual_run(args.save_video, args.save_sensor, args.os,
+            args.video_output_dir, args.sensor_output_dir)
+    elif(args.mode=='auto' & args.desplay_video==True):
+        print('auto mode(output image) start.\n')
+        autorun_with_image()
+    elif(args.mode=='auto' & args.desplay_video==None):
+        print('auto mode start.\n')
+        autorun()
+    else:
+        print(args.mode,"mode is not exit.")
         print("How to specify options is different.\
         please read help by -h or --help option.")
 
