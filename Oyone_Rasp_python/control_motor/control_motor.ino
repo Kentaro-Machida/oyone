@@ -71,7 +71,7 @@ void Left()
   
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(EnableR,50);
+  analogWrite(EnableR,150);
 //  delay(1000);
   
 }
