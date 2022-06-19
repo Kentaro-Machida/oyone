@@ -16,6 +16,7 @@ You can get help by running 'main.py' with the -h option.
 import sys
 import cv2
 import argparse
+import multiprocessing
 
 import get_guide
 import serial_communication
@@ -116,7 +117,7 @@ def manual_run(save_video=False, save_sensor=False,
             to_arduino.serial_wirte(which)
 
             rtn_which = to_arduino.serial_read()
-            
+
             # key27: esc
             if key == 27:
                 break
