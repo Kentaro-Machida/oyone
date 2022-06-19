@@ -19,7 +19,7 @@ void setup()
   pinMode(in1, OUTPUT);
   pinMode(in2, OUTPUT);
 
-  Serial.begin(9600);
+  Serial.begin(115200);
 }
 
 void Forward()
@@ -31,8 +31,8 @@ void Forward()
   digitalWrite(in3, LOW);
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(EnableL,200); //120
-  analogWrite(EnableR,200);//30
+  analogWrite(EnableL,50); //120
+  analogWrite(EnableR,100);//30
 //  delay(1000);
 }
 
@@ -58,8 +58,8 @@ void Back()
   digitalWrite(in3, HIGH);
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(EnableL,200); //120
-  analogWrite(EnableR,200);//30
+  analogWrite(EnableL,70); //120
+  analogWrite(EnableR,1090);//30
 }
 
 // Function when you want to go left
@@ -71,7 +71,7 @@ void Left()
   
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(EnableR,150);
+  analogWrite(EnableR,100);
 //  delay(1000);
   
 }
@@ -82,7 +82,7 @@ void Right()
 {
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  analogWrite(EnableL,150); 
+  analogWrite(EnableL,70); 
   
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
