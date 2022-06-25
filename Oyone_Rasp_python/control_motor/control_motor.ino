@@ -8,6 +8,8 @@ const int in2 = 12;
 
 #define max_speed 255
 #define min_speed 0
+#define right_motor_power 200
+#define left_motor_power 100 
 
 void setup() 
 {
@@ -31,8 +33,8 @@ void Forward()
   digitalWrite(in3, LOW);
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(EnableL,50); //120
-  analogWrite(EnableR,100);//30
+  analogWrite(EnableL, left_motor_power); //120
+  analogWrite(EnableR, right_motor_power);//30
 //  delay(1000);
 }
 
@@ -58,8 +60,8 @@ void Back()
   digitalWrite(in3, HIGH);
   digitalWrite(in1, LOW);
   digitalWrite(in2, HIGH);
-  analogWrite(EnableL,70); //120
-  analogWrite(EnableR,1090);//30
+  analogWrite(EnableL,left_motor_power); //120
+  analogWrite(EnableR,right_motor_power);//30
 }
 
 // Function when you want to go left
@@ -71,7 +73,7 @@ void Left()
   
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
-  analogWrite(EnableR,100);
+  analogWrite(EnableR,right_motor_power);
 //  delay(1000);
   
 }
@@ -82,7 +84,7 @@ void Right()
 {
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
-  analogWrite(EnableL,70); 
+  analogWrite(EnableL,left_motor_power); 
   
   digitalWrite(in1, HIGH);
   digitalWrite(in2, LOW);
