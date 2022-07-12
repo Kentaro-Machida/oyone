@@ -7,7 +7,7 @@ oyoneによるデータ収集の非常用ファイル
 import cv2
 import save_sensor_img
 
-data_saver = save_sensor_img(save_video=True, save_sensor=True)
+data_saver = save_sensor_img.Data_Saver(save_video=True, save_sensor=True)
 cap = cv2.VideoCapture(0)
 while True:
     ret, frame = cap.read()
