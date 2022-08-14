@@ -8,8 +8,8 @@ const int in2 = 12;
 
 #define max_speed 255
 #define min_speed 0
-#define right_motor_power 200
-#define left_motor_power 100 
+#define right_motor_power 255
+#define left_motor_power 255
 
 void setup() 
 {
